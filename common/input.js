@@ -1,10 +1,10 @@
-function Input({
-  type = "text",
-  placeholder = "",
+function Input ({
+  type = 'text',
+  placeholder = '',
   className,
   register,
   name,
- // errors,
+  // errors,
   ...props
 }) {
   return (
@@ -16,7 +16,7 @@ function Input({
       {...register(name)}
       {...props}
     />
-  );
+  )
 }
 
-export default Input;
+export default Input

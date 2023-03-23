@@ -6,7 +6,7 @@ const Select = ({ className, onChange, options = [], emptyOptions, name, registe
         onChange={onChange}
         {...register(name)}
       >
-        <option value="">{emptyOptions}</option>
+        <option value=''>{emptyOptions}</option>
         {options.map((item) => (
           <option key={item.id} value={item.id}>
             {item.name}
@@ -14,7 +14,7 @@ const Select = ({ className, onChange, options = [], emptyOptions, name, registe
         ))}
       </select>
     </div>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

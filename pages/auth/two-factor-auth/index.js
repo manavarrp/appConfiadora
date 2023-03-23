@@ -1,11 +1,11 @@
-import LoginWithCode from "../../../components/auth/LoginWithCode";
+import LoginWithCode from '../../../components/auth/LoginWithCode'
 
 const TwoFactorAuth = () => {
-  return <LoginWithCode />;
-};
+  return <LoginWithCode />
+}
 
-export default TwoFactorAuth;
+export default TwoFactorAuth
 
-TwoFactorAuth.getLayout = function PageLayout(page) {
-  return <>{page}</>;
-};
+TwoFactorAuth.getLayout = function PageLayout (page) {
+  return <>{page}</>
+}

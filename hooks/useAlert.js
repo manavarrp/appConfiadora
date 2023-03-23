@@ -1,7 +1,5 @@
 /* import { useState } from "react";
 
-
-
 const useAlert = (options) => {
     const defaultOptions ={
         active: false,
@@ -20,10 +18,10 @@ const useAlert = (options) => {
 
     return {
         alert,
-        setAlert, 
+        setAlert,
         toggleAlert
     };
- 
+
 }
 
 export default useAlert */

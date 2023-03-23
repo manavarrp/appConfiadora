@@ -1,51 +1,30 @@
 import { useRouter } from 'next/router'
-import authService from '../../../features/auth/authServices'
-import React, { useEffect } from 'react'
-import { reset } from '../../../features/auth/authSlice'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 import styles from '../../../styles/Username.module.css'
 import Logo from '../../common/Logo'
 import Input from '../../common/Input'
-import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
+import useLoginWithCode from '../../../hooks/useLogin'
 
 const LoginWithCode = () => {
   const router = useRouter()
-  const { isLoading, isSuccess, authDetails } = useSelector(
-    (state) => state.auth
-  )
+
   const { register, handleSubmit } = useForm({
     initialValues: { loginCode: '' }
   })
-  const dispatch = useDispatch()
-  const email = router.query.email
 
-  const sendUserLoginCode = async () => {
-    await authService.sendLoginCode(email)
-    await dispatch(reset())
-  }
+  const { e } = router.query
+
+  const { login, isLoading } = useLoginWithCode()
 
   const userLoginWithCode = async (data) => {
     const payload = {
       ...data,
-      email
+      email: e
     }
-    try {
-      const response = await authService.loginWithCode(payload)
-      console.log(response)
-    } catch (error) {
-      toast.error('A ocurrido un error')
-    }
+    await login(payload)
   }
-
-  useEffect(() => {
-    if (isSuccess && authDetails) {
-      router.push('/profile')
-    }
-
-    dispatch(reset())
-  }, [router, isSuccess, authDetails, dispatch])
 
   return (
     <div>
@@ -75,10 +54,10 @@ const LoginWithCode = () => {
                   className={styles.btn}
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Cargando' : 'Enviar'}
+                  {isLoading ? 'Cargando...' : 'Enviar'}
                 </button>
                 <div className='text-center py-2 text-gray'>
-                  <span onClick={sendUserLoginCode}>
+                  <span>
                     ¿ No llegó el codigo ?
                     <Link className='text-darkBlue' href='/reset'>
                       {' '}

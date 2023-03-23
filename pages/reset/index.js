@@ -1,16 +1,16 @@
-import React from 'react';
-import Reset from '../../components/reset/reset';
+import React from 'react'
+import Reset from '../../components/reset/reset'
 
 const reset = () => {
   return (
     <>
       <Reset />
     </>
-  );
-};
+  )
+}
 
-export default reset;
+export default reset
 
-reset.getLayout = function PageLayout(page) {
-  return <>{page}</>;
-};
+reset.getLayout = function PageLayout (page) {
+  return <>{page}</>
+}

@@ -5,11 +5,11 @@ import { useRouter } from 'next/router'
 import { auth } from '../utils/auth'
 import { decodeToken } from '../utils/decodeToken'
 
-const loginService = (payload) => {
+const loginWithCode = (payload) => {
   return globalAxios.post('auth/login/', payload)
 }
 
-const useLoginWithCode = () => {
+const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
@@ -17,14 +17,10 @@ const useLoginWithCode = () => {
     async (payload) => {
       try {
         setIsLoading(true)
-        const { data } = await loginService(payload)
 
-        if (typeof data === 'boolean' && data === true) {
-          return router.replace(`/auth/two-factor-auth?e=${payload?.userName}`)
-        }
+        const { data } = await loginWithCode(payload)
 
         const { token, isFirstLogin } = data?.data
-
         if (!token) return console.log('error')
 
         if (isFirstLogin) return router.replace(`/auth/change-first-password?t=${token}`)
@@ -45,4 +41,4 @@ const useLoginWithCode = () => {
   return { login, isLoading }
 }
 
-export default useLoginWithCode
+export default useLogin

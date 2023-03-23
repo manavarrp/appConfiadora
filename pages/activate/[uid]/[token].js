@@ -1,16 +1,16 @@
-import React from 'react';
-import Activate from '../../../components/activate/Activate';
+import React from 'react'
+import Activate from '../../../components/activate/Activate'
 
 const activate = () => {
   return (
     <>
       <Activate />
     </>
-  );
-};
+  )
+}
 
-export default activate;
+export default activate
 
-activate.getLayout = function PageLayout(page) {
-  return <>{page}</>;
-};
+activate.getLayout = function PageLayout (page) {
+  return <>{page}</>
+}
